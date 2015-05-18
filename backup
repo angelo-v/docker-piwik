@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ -z "$MYSQL_ENV_MYSQL_USER" ]; then echo "Error: MYSQL_ENV_MYSQL_USER not set"; echo "Finished: FAILURE"; exit 1; fi
+if [ -z "$MYSQL_ENV_MYSQL_DATABASE" ]; then echo "Error: MYSQL_ENV_MYSQL_DATABASE not set"; echo "Finished: FAILURE"; exit 1; fi
+if [ -z "$MYSQL_ENV_MYSQL_PASSWORD" ]; then echo "Error: MYSQL_ENV_MYSQL_PASSWORD not set"; echo "Finished: FAILURE"; exit 1; fi
+
+echo 'creating backup of config.ini.php'
+cp /var/www/html/config/config.ini.php /backups/config.ini.php.`date '+%Y%m%d'`
+
+echo 'creating database dump'
+mysqldump -h mysql --add-drop-table -u$MYSQL_ENV_MYSQL_USER -p $MYSQL_ENV_MYSQL_DATABASE --password=$MYSQL_ENV_MYSQL_PASSWORD | bzip2 -c > /backups/backup_`date '+%Y%m%d'`.sql.bz2
+
+echo 'Finished: SUCCESS'
