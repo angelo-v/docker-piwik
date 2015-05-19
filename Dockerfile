@@ -10,8 +10,7 @@ WORKDIR /var/www
 # download and install piwik in /var/www/html
 RUN wget http://builds.piwik.org/piwik.zip && unzip piwik.zip
 
-RUN ls -lah html
-RUN rmdir html
+RUN rm -R html
 RUN mv piwik html
 
 # install php modules & configure php
