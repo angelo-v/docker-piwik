@@ -26,6 +26,7 @@ ADD backup /bin/
 ADD restore /bin/
 
 VOLUME /backups
+VOLUME /var/www/html
 
 WORKDIR /var/www/html
 
