@@ -3,7 +3,7 @@ FROM php:apache
 MAINTAINER Angelo Veltens <angelo.veltens@online.de>
 
 RUN apt-get update 
-RUN apt-get install wget unzip libfreetype6-dev libjpeg62-turbo-dev libpng12-dev mysql-client bzip2 -y
+RUN apt-get install wget unzip libfreetype6-dev libjpeg62-turbo-dev libpng-dev mysql-client bzip2 -y
 
 WORKDIR /var/www
 
